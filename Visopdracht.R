@@ -42,9 +42,12 @@ df_long <- dataV %>%
 library(forcats)
 
 ggplot(df_long,
-       aes(x = fct_rev(reorder(Exports.by, Value)),
-           y = Value,
+       aes(x = fct_rev(reorder(Exports.by, X2022)),
+           y = Value/1000,
            fill = Year)) +
   geom_bar(stat = "identity", position = "dodge") +
-  labs(x = NULL, y = "Exports", fill = "Year") +
+  labs(x = NULL, y = "Exports (x Billion dollars)") +
+  scale_fill_manual(values = c("X2017.2017" = "orange", "X2022.2022" = "blue"), 
+                    labels = c("2017", "2022")) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
